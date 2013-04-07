@@ -3,7 +3,7 @@ package org.krams.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.krams.domain.User;
+import org.krams.domain.Suser;
 import org.krams.response.UserDto;
 import org.springframework.data.domain.Page;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
@@ -11,7 +11,7 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 
 public class UserMapper {
 
-	public static UserDto map(User user) {
+	public static UserDto map(Suser user) {
 			UserDto dto = new UserDto();
 			dto.setId(user.getId());
 			dto.setFirstName(user.getFirstName());
@@ -21,8 +21,8 @@ public class UserMapper {
 			return dto;
 	}
 	
-	public static User map(UserDto dto) {
-		User user = new User();
+	public static Suser map(UserDto dto) {
+		Suser user = new Suser();
 		user.setFirstName(dto.getFirstName());
 		user.setLastName(dto.getLastName());
 		user.setUsername(dto.getUsername());
@@ -32,9 +32,9 @@ public class UserMapper {
 		return user;
 }
 	
-	public static List<UserDto> map(Page<User> users) {
+	public static List<UserDto> map(Page<Suser> users) {
 		List<UserDto> dtos = new ArrayList<UserDto>();
-		for (User user: users) {
+		for (Suser user: users) {
 			dtos.add(map(user));
 		}
 		return dtos;

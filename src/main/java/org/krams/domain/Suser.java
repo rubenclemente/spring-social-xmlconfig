@@ -7,50 +7,51 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
-@Entity(name="user")
-public class User {
-	
+@Entity(name="suser")
+public class Suser {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String firstName;
 	private String lastName;
-	
+
 	@Column(unique=true)
 	private String username;
-	
+
 	private String password;
-	
+
 	@JsonManagedReference
-	@OneToOne(mappedBy="user", cascade={CascadeType.ALL})
+	@OneToOne(mappedBy="suser", cascade={CascadeType.ALL})
 	private Role role;
 
-	public User() {}
-	
-	public User(String username, String password, String firstName, String lastName, Role role) {
+	public Suser() {}
+
+	public Suser(String username, String password, String firstName, String lastName, Role role) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.role = role;
 	}
-	
-	public User(String username, String firstName, String lastName, Role role) {
+
+	public Suser(String username, String firstName, String lastName, Role role) {
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.role = role;
 	}
 
-	public User(String username) {
+	public Suser(String username) {
 		this.username = username;
 	}
-	
+
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -58,7 +59,7 @@ public class User {
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return this.firstName;
 	}
 
 	public void setFirstName(String firstName) {
@@ -66,7 +67,7 @@ public class User {
 	}
 
 	public String getLastName() {
-		return lastName;
+		return this.lastName;
 	}
 
 	public void setLastName(String lastName) {
@@ -74,7 +75,7 @@ public class User {
 	}
 
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
 	public void setUsername(String username) {
@@ -82,7 +83,7 @@ public class User {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -90,7 +91,7 @@ public class User {
 	}
 
 	public Role getRole() {
-		return role;
+		return this.role;
 	}
 
 	public void setRole(Role role) {

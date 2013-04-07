@@ -16,13 +16,13 @@
 	<bean id="connectionFactoryLocator" class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
 		<property name="connectionFactories">
 			<list>
-				<bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
-					<constructor-arg value="${facebook.clientId}" />
-					<constructor-arg value="${facebook.clientSecret}" />				
-				</bean>
 				<bean class="org.springframework.social.twitter.connect.TwitterConnectionFactory">
 					<constructor-arg value="${twitter.consumerKey}" />
 					<constructor-arg value="${twitter.consumerSecret}" />				
+				</bean>
+				<bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+					<constructor-arg value="${facebook.clientId}" />
+					<constructor-arg value="${facebook.clientSecret}" />				
 				</bean>
 			</list>
 		</property>
@@ -44,5 +44,8 @@
 	</bean>
 	
 	<bean class="org.springframework.social.connect.web.ConnectController"
-		p:applicationUrl="${application.url}"/>  
+		p:applicationUrl="${application.url}"/>
+	<!--
+	<bean class="org.springframework.web.filter.HiddenHttpMethodFilter"/>
+	-->    
 </beans>

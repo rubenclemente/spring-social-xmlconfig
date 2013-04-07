@@ -28,7 +28,7 @@
 	<!-- Activate Spring Data JPA repository support -->
   	<jpa:repositories base-package="org.krams.repository" />
   	
-	<!-- Declare a datasource that has pooling capabilities-->	 
+	<!-- Declare a datasource that has pooling capabilities	 
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close"
 		p:driverClass="${app.jdbc.driverClassName}"
@@ -40,7 +40,16 @@
 		p:maxPoolSize="100"
 		p:maxStatements="50"
 		p:minPoolSize="10" />
+-->
 
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${app.jdbc.driverClassName}" />
+		<property name="url" value="${app.jdbc.url}" />
+		<property name="username" value="${app.jdbc.username}" />
+		<property name="password" value="${app.jdbc.password}" />
+	</bean>
+	
+	
  	<!-- Declare a JPA entityManagerFactory -->
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" 
 		p:persistenceXmlLocation="classpath*:META-INF/persistence.xml"

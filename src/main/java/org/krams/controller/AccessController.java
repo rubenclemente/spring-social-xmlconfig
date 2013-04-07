@@ -1,7 +1,7 @@
 package org.krams.controller;
 
 import org.krams.domain.Role;
-import org.krams.domain.User;
+import org.krams.domain.Suser;
 import org.krams.repository.UserRepository;
 import org.krams.response.UserDto;
 import org.krams.util.RoleUtil;
@@ -59,7 +59,7 @@ public class AccessController {
 			return "access/signup";
 		}
 		
-		User user = UserMapper.map(dto);
+		Suser user = UserMapper.map(dto);
 		user.setRole(new Role(RoleUtil.ROLE_USER, user));
 		user = userRepository.save(user);
 		return "redirect:/";

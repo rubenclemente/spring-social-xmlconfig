@@ -3,7 +3,7 @@ package org.krams.controller;
 import java.util.List;
 
 import org.krams.domain.Role;
-import org.krams.domain.User;
+import org.krams.domain.Suser;
 import org.krams.repository.UserRepository;
 import org.krams.response.UserDto;
 import org.krams.service.UserService;
@@ -39,7 +39,7 @@ public class UserController {
 	@RequestMapping
 	public String getUsersPage(ModelMap model) {
 		Pageable pageRequest = new PageRequest(0, 100);
-		Page<User> users = repository.findAll(pageRequest);
+		Page<Suser> users = repository.findAll(pageRequest);
 		model.addAttribute("users", UserMapper.map(users));
 		model.addAttribute("commanduser", new UserDto());
 		model.addAttribute("usertype", "new");
@@ -54,11 +54,11 @@ public class UserController {
 	@RequestMapping(value="/create", produces="application/json", method=RequestMethod.POST)
 	public String create(UserDto dto) {
 		if (dto.getId() != null)  {
-			User existingUser = UserMapper.map(dto);
+			Suser existingUser = UserMapper.map(dto);
 			existingUser.setRole(new Role(dto.getRole(), existingUser));
 			service.update(existingUser);
 		} else {
-			User newUser = UserMapper.map(dto);
+			Suser newUser = UserMapper.map(dto);
 			newUser.setRole(new Role(dto.getRole(), newUser));
 			service.create(newUser);
 		}
@@ -68,7 +68,7 @@ public class UserController {
 	@RequestMapping(value="/edit")
 	public String edit(Long id, ModelMap model) {
 		Pageable pageRequest = new PageRequest(0, 100);
-		Page<User> users = repository.findAll(pageRequest);
+		Page<Suser> users = repository.findAll(pageRequest);
 		model.addAttribute("users", UserMapper.map(users));
 		model.addAttribute("commanduser", UserMapper.map(repository.findOne(id)));
 		model.addAttribute("usertype", "update");
@@ -77,7 +77,7 @@ public class UserController {
 	
 	@RequestMapping(value="/delete")
 	public String delete(Long id) {
-		User existingUser = new User();
+		Suser existingUser = new Suser();
 		existingUser.setId(id);
 		service.delete(existingUser);
 		return "redirect:/users";
